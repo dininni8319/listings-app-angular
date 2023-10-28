@@ -1,14 +1,18 @@
-<section>
-  <form>
-    <input type="text" >
-    <button type="button">Search</button>
-  </form>
-</section>
- <h1>{{ title }}</h1>
+<app-search-form (newQueryEventEmit)="filterSearchedListings($event)" ></app-search-form>
 <app-housing-location></app-housing-location>
 
-{{ houses }}
-
-<div class="grid grid-cols-3 gap-2">
-    <app-card [house]="house" *ngFor="let house of housingLocation"></app-card>
+<h1>{{ title }}</h1>
+<app-searched-query-list 
+  [listOfQueries]="listOfQueries"
+></app-searched-query-list>
+<div class="grid grid-cols-3 gap-2" *ngIf="!(filteredLocations.length > 0)">
+    <app-card 
+      [house]="house" *ngFor="let house of housingLocation"
+      (deleteQueryEventEmit)="deleteListing($event)"
+    ></app-card>
 </div>
+
+<div class="grid grid-cols-3 gap-2" *ngIf="filteredLocations.length > 0">
+  <app-card [house]="house" *ngFor="let house of filteredLocations"></app-card>
+</div>
+

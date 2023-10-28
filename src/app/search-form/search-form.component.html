@@ -1,0 +1,15 @@
+<form class="flex justify-center bg-gray-200 py-10">
+  <input 
+    type="text" 
+    class="border-0" 
+    placeholder="Search..." 
+    #query
+    (keyup.enter)="search(query.value)"
+  >
+  <button 
+    type="button" 
+    class="bg-purple-600 text-white p-2 mx-2"
+    (click)="search(query.value)"
+  >Search</button>
+</form>
+
